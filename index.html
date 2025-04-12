@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to JADARA school</h1>
+    <div class="collapsible-container">
+        <button type="button" class="collapsible-btn">Students's List</button>
+        <span class="triangle-down"></span>
+    </div>
+    <div class="collapsible-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Age</th>
+                    <th>Note</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="student-table-body">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" id="total-students">Total Students: 0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <button class="btn" id="add-student">Add student</button>
+    <div class="form-visibility">
+        <form>
+            <div class="rows" id="fullname">
+                <label>full name:</label>
+                <input type="text" id="name-input">
+            </div>
+            <div class="rows" id="age">
+                <label>Select age:</label>
+                <input type="number" id="age-input">
+            </div>
+            <div class="rows" id="NoteStyle">
+                <label>Note:</label>
+                <div id="note">
+                    <input type="number" id="note-input">
+                    <p>/20</p>
+                </div>
+            </div>
+            <button class="form-btn" id="addinfo-btn" type="button">Add student</button>
+            <button class="form-btn" id="cancel-btn" type="button">cancel</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
