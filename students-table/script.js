@@ -27,9 +27,9 @@ function cancel() {
     const nameInput = document.querySelector("#name-input");
     const ageInput = document.querySelector("#age-input");
     const noteInput = document.querySelector("#note-input");
-    
+
     document.querySelector(".form-visibility").style.display = "none";
-    
+
     nameInput.value = "";
     ageInput.value = "";
     noteInput.value = "";
@@ -39,7 +39,7 @@ function cancel() {
 function checkStatus(note) {
     if (note >= 10) {
         return "Passed"
-    }else {
+    } else {
         return "Failed"
     }
 
@@ -53,8 +53,8 @@ function getValues() {
     var name = document.querySelector("#name-input").value;
     var age = document.querySelector("#age-input").value;
     var note = document.querySelector("#note-input").value;
-    
-    if (name && age && note) { 
+
+    if (name && age && note) {
         var student = {
             name: name,
             age: age,
@@ -77,6 +77,13 @@ function getValues() {
                 <td>${age}</td>
                 <td>${note}</td>
                 <td style="color: ${statusColor};">${student.status}</td>
+                <td style="border-radius:5px 5px; padding:0"">
+                    <i class="fas fa-edit" d="update" style="cursor: pointer;">
+                    </i>
+                </td>
+                <td style="border-radius:5px 5px; padding:0">
+                    <i class="fa-solid fa-trash" id="delete" style="cursor: pointer;"></i>
+                </td>
             </tr>
         `;
 
@@ -110,7 +117,7 @@ function getValues() {
 
 
 // call the students when the windows loaded
-window.onload = function() {
+window.onload = function () {
     let storedStudents = localStorage.getItem("students");
 
     if (storedStudents) {
@@ -133,6 +140,13 @@ window.onload = function() {
                     <td>${student.age}</td>
                     <td>${student.note}/20</td>
                     <td style="color:${statusColor};">${student.status}</td>
+                    <td style="border-radius:5px 5px; padding:0"">
+                        <i class="fas fa-edit" d="update" style="cursor: pointer;">
+                        </i>
+                    </td>
+                    <td style="border-radius:5px 5px; padding:0">
+                        <i class="fa-solid fa-trash" id="delete" style="cursor: pointer;"></i>
+                    </td>
                 </tr>
             `;
             tableBody.innerHTML += rowHTML;
@@ -141,4 +155,11 @@ window.onload = function() {
         var totalStudents = students.length;
         document.querySelector("#total-students").innerText = "Total Students: " + totalStudents;
     }
+}
+
+// update the user data
+const update = document.querySelector("update");
+update.addEventListener("click", updateData);
+function updateData() {
+    
 }
