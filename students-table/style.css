@@ -147,4 +147,7 @@ body {
       }
     }
   }
+  #popup {
+    display: none;
+  }
 }

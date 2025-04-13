@@ -78,11 +78,11 @@ function getValues() {
                 <td>${note}</td>
                 <td style="color: ${statusColor};">${student.status}</td>
                 <td style="border-radius:5px 5px; padding:0"">
-                    <i class="fas fa-edit" d="update" style="cursor: pointer;">
+                    <i class="fas fa-edit update" style="cursor: pointer;">
                     </i>
                 </td>
                 <td style="border-radius:5px 5px; padding:0">
-                    <i class="fa-solid fa-trash" id="delete" style="cursor: pointer;"></i>
+                    <i class="fa-solid fa-trash delete" style="cursor: pointer;"></i>
                 </td>
             </tr>
         `;
@@ -113,6 +113,7 @@ function getValues() {
     } else {
         alert("Please fill in all fields!");
     }
+    deleteStudent();
 }
 
 
@@ -141,11 +142,11 @@ window.onload = function () {
                     <td>${student.note}/20</td>
                     <td style="color:${statusColor};">${student.status}</td>
                     <td style="border-radius:5px 5px; padding:0"">
-                        <i class="fas fa-edit" d="update" style="cursor: pointer;">
+                        <i class="fas fa-edit update" style="cursor: pointer;">
                         </i>
                     </td>
                     <td style="border-radius:5px 5px; padding:0">
-                        <i class="fa-solid fa-trash" id="delete" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-trash delete" style="cursor: pointer;"></i>
                     </td>
                 </tr>
             `;
@@ -155,11 +156,31 @@ window.onload = function () {
         var totalStudents = students.length;
         document.querySelector("#total-students").innerText = "Total Students: " + totalStudents;
     }
+    deleteStudent()
 }
 
 // update the user data
-const update = document.querySelector("update");
-update.addEventListener("click", updateData);
-function updateData() {
+
+// delete student
+function deleteStudent() {
+    const deleteBtn = document.querySelectorAll(".delete");
     
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].addEventListener("click", function() {
+            let currentRow = this.closest('tr');
+            if (!currentRow) return;
+            var allStudents = currentRow.parentNode.children; 
+            var rowIndex = Array.from(allStudents).indexOf(currentRow);
+            
+            var students = JSON.parse(localStorage.getItem('students')) || [];
+            if (rowIndex >= 0 && rowIndex < students.length) {
+                students.splice(rowIndex, 1);
+                localStorage.setItem('students', JSON.stringify(students));
+            }
+            
+            currentRow.remove();
+            document.querySelector('#total-students').textContent = 
+                    'Total Students: ' + students.length;
+        });
+    }
 }
